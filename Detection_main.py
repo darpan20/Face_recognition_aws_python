@@ -66,29 +66,11 @@ def surv_detect():
              
              print(e)
              cv2.imshow("FRAME 2",output)
-             
-          #cv2.imshow("FRAME 3",output)
-         #cv2.destroyWindow("FRAME 3")
-         #cv2.imshow("FRAME 3",output)
-          
-          
-        
-         
-         
-         
-         #os.remove(exe+ "\\Output_image" +".jpg")     
+                
            
         else:
             continue
-        
-            # draw a fancy border around the faces
-        
-        
-        
-            
-        
-        
-    # cleanup
+     
 
 if __name__=='__main__':
  surv_detect()
