@@ -55,7 +55,6 @@ def real_time_detect(output,stream):
               names.append(response1['FaceMatches'][0]['Face']['ExternalImageId'])
              except Exception as e: 
               print(e)
-              print("face detected but not recognized")
               print(response['FaceRecords'][i]['Face'])
               height = response['FaceRecords'][i]['Face']['BoundingBox']['Height'] 
               width = response['FaceRecords'][i]['Face']['BoundingBox']['Width']
@@ -65,14 +64,11 @@ def real_time_detect(output,stream):
               x2 = int(imgHeight *top)
               y1 = int(imgWidth * width)
               y2 = int(imgHeight * height)
-              print(x1,x2,y1,y2)
-              print("yaha 1 ids:",ids)
               try:
                    client.delete_faces(
                    CollectionId = c,
                    FaceIds = ids,
                     )
-                   print("yaha 1 ids deleted:",ids)
               except Exception as e:
                   print(e)
                   continue
@@ -89,7 +85,6 @@ def real_time_detect(output,stream):
               print(folderPath1+"\\%d-%d-%d(%d:%d:%d)"%(z[2],z[1],z[0],z[3],z[4],z[5]) + ".jpg")
               
               cv2.imwrite(folderPath1+"\\"+"%d-%d-%d(%d:%d:%d)"%(z[2],z[1],z[0],z[3],z[4],z[5]) + ".jpg",x)
-              print("suspected done")
               continue  
             
              #print(names)      
@@ -101,7 +96,6 @@ def real_time_detect(output,stream):
                      #names.append(response1['FaceMatches'][i]['Face']['ExternalImageId'])
                      #print(response1['FaceMatches'][i]['Face']['ExternalImageId'])
              text_name=response1['FaceMatches'][0]['Face']['ExternalImageId'].upper()
-             print(text_name)
                          
              height = response['FaceRecords'][i]['Face']['BoundingBox']['Height'] 
              width = response['FaceRecords'][i]['Face']['BoundingBox']['Width']
@@ -111,15 +105,12 @@ def real_time_detect(output,stream):
              x2 = int(imgHeight *top)
              y1 = int(imgWidth * width)
              y2 = int(imgHeight * height)
-             print(x1,x2,y1,y2)
               
-             print("yaha 2 ids:",ids)
              try:
                    client.delete_faces(
                    CollectionId = c,
                    FaceIds = ids,
                     )
-                   print("yaha 2 ids deleted:",ids)
              except Exception as e:
                   print(e)
                   continue            
@@ -149,7 +140,6 @@ def real_time_detect(output,stream):
          CollectionId = c,
          FaceIds = ids,
          )
-         print("yaha 3 ids deleted:",ids)      
     except Exception as e: 
              print(e)
              #print("No one in Camera!")
@@ -179,36 +169,7 @@ def real_time_detect(output,stream):
             stream.release()
             main()
             return
-    
-    
-    
-    #The images are indexed in collection "harsh" and all the data is returned in response1
-    #The image is stored in S3 bucket
-    
-    '''height = response1['FaceRecords'][0]['Face']['BoundingBox']['Height'] 
-    width = response1['FaceRecords'][0]['Face']['BoundingBox']['Width']
-    top = response1['FaceRecords'][0]['Face']['BoundingBox']['Top']
-    left = response1['FaceRecords'][0]['Face']['BoundingBox']['Left']
-    x1 = int(imgWidth *left)
-    x2 = int(imgHeight *top)
-    y1 = int(imgWidth * width)
-    y2 = int(imgHeight * height)'''
-    
-    
-    
-    
-    #To get coordinates (not sure if they are right)
-    '''x1 = int(left*dim[0])+1
-    x2 = int(top*dim[1])+1
-    y1 = int(width*dim[0])+1
-    y2 = int(height*dim[1])+1'''
-    
-    #Image is saved
-    '''x = cv2.imread(folderPath+"\\"+"User0.jpg")
-    x = cv2.rectangle(x, (x1,x2), (y1+x1,x2+y2), (255,0,0), 2)'''
-    #cv2.imwrite(exe+"\\darpan.jpg",x)
-    #cv2.imshow("FRAME 3",x) 
-    try:
+   try:
        
      return x
     except Exception as e: 
